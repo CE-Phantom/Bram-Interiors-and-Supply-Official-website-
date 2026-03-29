@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bram Interiors Shop</title>
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #f5f5f5;
+    }
+
+    header {
+      background: black;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .cart {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Bram Interiors Shop</h1>
+</header>
+
+<div class="cart">
+  🛒 Cart: <span id="cart-count">0</span>
+</div>
+
+<div class="products">
+
+  <!-- 10 PRODUCTS -->
+  <div class="product">
+    <img src="images/product1.jpg">
+    <h3>Modern Sofa</h3>
+    <p>Ksh 25,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product2.jpg">
+    <h3>Luxury Curtains</h3>
+    <p>Ksh 5,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product3.jpg">
+    <h3>Wallpaper</h3>
+    <p>Ksh 2,500</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product4.jpg">
+    <h3>Office Desk</h3>
+    <p>Ksh 15,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product5.jpg">
+    <h3>Bed Frame</h3>
+    <p>Ksh 20,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product6.jpg">
+    <h3>Kitchen Cabinet</h3>
+    <p>Ksh 30,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product7.jpg">
+    <h3>TV Stand</h3>
+    <p>Ksh 12,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product8.jpg">
+    <h3>Wall Shelves</h3>
+    <p>Ksh 4,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product9.jpg">
+    <h3>Blinds</h3>
+    <p>Ksh 6,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+  <div class="product">
+    <img src="images/product10.jpg">
+    <h3>Dining Table</h3>
+    <p>Ksh 18,000</p>
+    <button onclick="addToCart()">Add to Cart</button>
+  </div>
+
+</div>
+
+<script>
+  let count = 0;
+
+  function addToCart() {
+    count++;
+    document.getElementById("cart-count").innerText = count;
+  }
+</script>
+
+</body>
+                                               </html>

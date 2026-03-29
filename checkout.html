@@ -28,7 +28,7 @@
       padding: 12px;
       background: black;
       color: white;
-      border: none;
+      border: black;
     }
   </style>
 </head>
@@ -58,6 +58,17 @@ function checkout() {
 Name: ${name}
 Phone: ${phone}
 Location: ${location}`;
+let cart = [];
+
+function addToCart(product, price) {
+  cart.push({product, price});
+  document.getElementById("cart-count").innerText = cart.length;
+}
+
+function goToCheckout() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location.href = "checkout.html";
+}
 
   let whatsapp = "https://wa.me/+254 752 902370?text=" + encodeURIComponent(message);
 

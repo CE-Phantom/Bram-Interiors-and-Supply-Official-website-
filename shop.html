@@ -139,7 +139,7 @@
   </div>
 
 </div>
-
+<button onclick="goToCheckout()">Checkout</button>
 <script>
   let count = 0;
 
@@ -147,6 +147,11 @@
     count++;
     document.getElementById("cart-count").innerText = count;
   }
+
+function goToCheckout() {
+  window.location.href = "checkout.html";
+}
+
 </script>
 
 </body>

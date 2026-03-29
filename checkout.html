@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout - Bram Interiors</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>Checkout</h2>
+
+<div class="form">
+  <input type="text" id="name" placeholder="Your Name">
+  <input type="text" id="phone" placeholder="Phone Number">
+  <textarea id="location" placeholder="Delivery Location"></textarea>
+
+  <button onclick="checkout()">Pay with M-Pesa</button>
+</div>
+
+<script>
+function checkout() {
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let location = document.getElementById("location").value;
+
+  let message = `New Order:
+Name: ${name}
+Phone: ${phone}
+Location: ${location}`;
+
+  let whatsapp = "https://wa.me/254XXXXXXXXX?text=" + encodeURIComponent(message);
+
+  window.location.href = whatsapp;
+}
+</script>
+
+</body>
+</html>

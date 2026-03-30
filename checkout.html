@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ... (same styles as before, add .cart-item-detail) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary-color: #2a5c3d;
             --secondary-color: #d4af8c;
@@ -23,7 +23,6 @@
             --light-text: #777;
             --transition: all 0.3s ease;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
@@ -31,7 +30,6 @@
             background-color: var(--light-color);
             padding: 20px;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -40,7 +38,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             overflow: hidden;
         }
-
         .checkout-header {
             background: var(--primary-color);
             color: white;
@@ -49,7 +46,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .back-button {
             background: rgba(255,255,255,0.2);
             color: white;
@@ -61,15 +57,12 @@
             gap: 8px;
             transition: var(--transition);
         }
-
         .back-button:hover {
             background: rgba(255,255,255,0.3);
         }
-
         .checkout-content {
             padding: 30px;
         }
-
         h2 {
             font-size: 1.8rem;
             margin-bottom: 20px;
@@ -77,30 +70,30 @@
             border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
         }
-
         .order-summary {
             background-color: var(--light-color);
             border-radius: 8px;
             padding: 20px;
             margin-bottom: 30px;
         }
-
         .order-summary h3 {
             margin-bottom: 15px;
             color: var(--dark-color);
         }
-
         .order-item {
             display: flex;
             justify-content: space-between;
             padding: 10px 0;
             border-bottom: 1px solid #ddd;
         }
-
+        .order-item-detail {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin-top: 4px;
+        }
         .order-item:last-child {
             border-bottom: none;
         }
-
         .order-total {
             display: flex;
             justify-content: space-between;
@@ -110,18 +103,15 @@
             font-weight: bold;
             font-size: 1.2rem;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
             color: var(--dark-color);
         }
-
         .form-group input,
         .form-group textarea {
             width: 100%;
@@ -132,14 +122,12 @@
             font-size: 1rem;
             transition: var(--transition);
         }
-
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(42,92,61,0.1);
         }
-
         .place-order-btn {
             width: 100%;
             padding: 14px;
@@ -156,12 +144,10 @@
             justify-content: center;
             gap: 10px;
         }
-
         .place-order-btn:hover {
             background-color: var(--accent-color);
             transform: translateY(-2px);
         }
-
         .error-message {
             background-color: #fee;
             color: #c00;
@@ -170,18 +156,15 @@
             margin-bottom: 20px;
             display: none;
         }
-
         .empty-cart {
             text-align: center;
             padding: 40px;
         }
-
         .empty-cart i {
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 20px;
         }
-
         @media (max-width: 600px) {
             .checkout-header {
                 flex-direction: column;
@@ -198,186 +181,138 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="checkout-header">
-            <a href="shop.html" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Shop
-            </a>
-            <h1><i class="fas fa-shopping-cart"></i> Checkout</h1>
-        </div>
-
-        <div class="checkout-content" id="checkoutContent">
-            <!-- Content will be populated by JavaScript -->
-        </div>
+<div class="container">
+    <div class="checkout-header">
+        <a href="shop.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Shop
+        </a>
+        <h1><i class="fas fa-shopping-cart"></i> Checkout</h1>
     </div>
+    <div class="checkout-content" id="checkoutContent"></div>
+</div>
 
-    <script>
-        // Retrieve cart from localStorage
-        let cart = [];
-        try {
-            const storedCart = localStorage.getItem('cart');
-            if (storedCart) {
-                cart = JSON.parse(storedCart);
-            }
-        } catch(e) {
-            console.error('Error parsing cart', e);
-        }
+<script>
+    let cart = [];
+    try {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) cart = JSON.parse(storedCart);
+    } catch(e) { console.error(e); }
 
-        // Function to display order summary
-        function displayOrderSummary() {
-            const container = document.getElementById('checkoutContent');
-            if (!cart.length) {
-                container.innerHTML = `
-                    <div class="empty-cart">
-                        <i class="fas fa-shopping-cart"></i>
-                        <h3>Your cart is empty</h3>
-                        <p>Add some items to your cart before checking out.</p>
-                        <a href="shop.html" class="back-button" style="background: var(--primary-color); color: white; display: inline-block; margin-top: 20px;">
-                            <i class="fas fa-arrow-left"></i> Continue Shopping
-                        </a>
-                    </div>
-                `;
-                return;
-            }
-
-            let itemsHtml = '';
-            let total = 0;
-            cart.forEach(item => {
-                const itemTotal = item.price * item.quantity;
-                total += itemTotal;
-                itemsHtml += `
-                    <div class="order-item">
-                        <span><strong>${item.name}</strong> x ${item.quantity}</span>
-                        <span>KSh ${itemTotal.toLocaleString()}</span>
-                    </div>
-                `;
-            });
-
-            const html = `
-                <div class="order-summary">
-                    <h3><i class="fas fa-receipt"></i> Order Summary</h3>
-                    ${itemsHtml}
-                    <div class="order-total">
-                        <span>Total Amount:</span>
-                        <span>KSh ${total.toLocaleString()}</span>
-                    </div>
+    function displayOrderSummary() {
+        const container = document.getElementById('checkoutContent');
+        if (!cart.length) {
+            container.innerHTML = `
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>Your cart is empty</h3>
+                    <p>Add some items to your cart before checking out.</p>
+                    <a href="shop.html" class="back-button" style="background: var(--primary-color); color: white; display: inline-block; margin-top: 20px;">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
                 </div>
-
-                <form id="checkoutForm">
-                    <div class="form-group">
-                        <label for="fullName">Full Name *</label>
-                        <input type="text" id="fullName" required placeholder="Enter your full name">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number (for order confirmation) *</label>
-                        <input type="tel" id="phone" required placeholder="e.g., 0712345678">
-                        <small style="color: var(--light-text);">We'll contact you via WhatsApp/SMS</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Delivery Location *</label>
-                        <textarea id="location" rows="3" required placeholder="Enter your full address, e.g., Nairobi, Westlands, Kimathi Street 123"></textarea>
-                    </div>
-                    <div class="error-message" id="errorMsg"></div>
-                    <button type="submit" class="place-order-btn">
-                        <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
-                    </button>
-                </form>
             `;
-            container.innerHTML = html;
-
-            // Attach form submit handler
-            const form = document.getElementById('checkoutForm');
-            form.addEventListener('submit', handleOrderSubmit);
+            return;
         }
 
-        // Handle order submission: open WhatsApp with order details
-        function handleOrderSubmit(e) {
-            e.preventDefault();
+        let itemsHtml = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            itemsHtml += `
+                <div class="order-item">
+                    <div>
+                        <strong>${item.name}</strong> x ${item.quantity}
+                        ${item.color ? `<div class="order-item-detail">Color: ${item.color}</div>` : ''}
+                    </div>
+                    <span>KSh ${itemTotal.toLocaleString()}</span>
+                </div>
+            `;
+        });
 
-            const nameInput = document.getElementById('fullName');
-            const phoneInput = document.getElementById('phone');
-            const locationInput = document.getElementById('location');
-            const errorDiv = document.getElementById('errorMsg');
+        const html = `
+            <div class="order-summary">
+                <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                ${itemsHtml}
+                <div class="order-total">
+                    <span>Total Amount:</span>
+                    <span>KSh ${total.toLocaleString()}</span>
+                </div>
+            </div>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number (for order confirmation) *</label>
+                    <input type="tel" id="phone" required placeholder="e.g., 0712345678">
+                    <small style="color: var(--light-text);">We'll contact you via WhatsApp/SMS</small>
+                </div>
+                <div class="form-group">
+                    <label for="location">Delivery Location *</label>
+                    <textarea id="location" rows="3" required placeholder="Enter your full address, e.g., Nairobi, Westlands, Kimathi Street 123"></textarea>
+                </div>
+                <div class="error-message" id="errorMsg"></div>
+                <button type="submit" class="place-order-btn">
+                    <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+                </button>
+            </form>
+        `;
+        container.innerHTML = html;
+        document.getElementById('checkoutForm').addEventListener('submit', handleOrderSubmit);
+    }
 
-            // Clear previous error
-            errorDiv.style.display = 'none';
-            errorDiv.textContent = '';
+    function handleOrderSubmit(e) {
+        e.preventDefault();
 
-            // Get values
-            const customerName = nameInput.value.trim();
-            let customerPhone = phoneInput.value.trim();
-            const location = locationInput.value.trim();
+        const name = document.getElementById('fullName').value.trim();
+        let phone = document.getElementById('phone').value.trim();
+        const location = document.getElementById('location').value.trim();
+        const errorDiv = document.getElementById('errorMsg');
 
-            // Validate
-            if (!customerName) {
-                showError('Please enter your name');
-                return;
-            }
-            if (!customerPhone) {
-                showError('Please enter your phone number');
-                return;
-            }
-            // Format phone (optional, keep as entered for WhatsApp contact)
-            customerPhone = customerPhone.replace(/\D/g, '');
-            if (customerPhone.length < 9 || customerPhone.length > 13) {
-                showError('Please enter a valid phone number (e.g., 0712345678)');
-                return;
-            }
-            if (!location) {
-                showError('Please enter your delivery location');
-                return;
-            }
+        errorDiv.style.display = 'none';
+        errorDiv.textContent = '';
 
-            // Prepare order message
-            let total = 0;
-            cart.forEach(item => {
-                total += item.price * item.quantity;
-            });
+        if (!name) { showError('Please enter your name'); return; }
+        if (!phone) { showError('Please enter your phone number'); return; }
+        phone = phone.replace(/\D/g, '');
+        if (phone.length < 9 || phone.length > 13) { showError('Please enter a valid phone number (e.g., 0712345678)'); return; }
+        if (!location) { showError('Please enter your delivery location'); return; }
 
-            // Build item list
-            let itemsText = '';
-            cart.forEach(item => {
-                itemsText += `• ${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
-            });
+        let total = 0;
+        let itemsText = '';
+        cart.forEach(item => {
+            total += item.price * item.quantity;
+            itemsText += `• ${item.name} x ${item.quantity}`;
+            if (item.color) itemsText += ` (${item.color})`;
+            itemsText += ` = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
+        });
 
-            // Include customer name in the message
-            const message = `*NEW ORDER FOR BRAM INTERIORS*\n\n` +
-                `*Customer:* ${customerName}\n` +
-                `*Phone:* ${customerPhone}\n` +
-                `*Delivery Location:* ${location}\n\n` +
-                `*Items:*\n${itemsText}\n` +
-                `*Total:* KSh ${total.toLocaleString()}\n\n` +
-                `Thank you!`;
+        const message = `*NEW ORDER FROM BRAM INTERIORS*\n\n` +
+            `*Customer:* ${name}\n` +
+            `*Phone:* ${phone}\n` +
+            `*Delivery Location:* ${location}\n\n` +
+            `*Items:*\n${itemsText}\n` +
+            `*Total:* KSh ${total.toLocaleString()}\n\n` +
+            `Thank you!`;
 
-            // Encode for WhatsApp URL
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/+254752902370?text=${encodedMessage}`;
+        const whatsappUrl = `https://wa.me/+254752902370?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+        alert('Order details sent via WhatsApp. We will confirm shortly.');
 
-            // Open WhatsApp in new tab
-            window.open(whatsappUrl, '_blank');
+        localStorage.removeItem('cart');
+        setTimeout(() => window.location.href = 'shop.html', 2000);
+    }
 
-            // Show confirmation message
-            alert('Order details have been sent via WhatsApp. We will confirm shortly.');
+    function showError(msg) {
+        const errorDiv = document.getElementById('errorMsg');
+        errorDiv.textContent = msg;
+        errorDiv.style.display = 'block';
+        setTimeout(() => errorDiv.style.display = 'none', 4000);
+    }
 
-            // Optionally clear cart from localStorage after order placed
-            localStorage.removeItem('cart');
-            // Redirect to shop after a short delay
-            setTimeout(() => {
-                window.location.href = 'shop.html';
-            }, 2000);
-        }
-
-        function showError(msg) {
-            const errorDiv = document.getElementById('errorMsg');
-            errorDiv.textContent = msg;
-            errorDiv.style.display = 'block';
-            setTimeout(() => {
-                errorDiv.style.display = 'none';
-            }, 4000);
-        }
-
-        // Run on page load
-        displayOrderSummary();
-    </script>
+    displayOrderSummary();
+</script>
 </body>
 </html>

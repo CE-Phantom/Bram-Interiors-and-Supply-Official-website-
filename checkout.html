@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Checkout - Bram Interiors</title>
+  <title>Checkout</title>
   <style>
-    body {
-      font-family: Arial;
-      padding: 20px;
-    }
+    body { font-family:Arial; padding:20px; }
 
-    h2 {
-      text-align: center;
-    }
-
-    .form {
-      max-width: 400px;
-      margin: auto;
+    .box {
+      max-width:400px;
+      margin:auto;
     }
 
     input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
+      width:100%; padding:10px;
+      margin:10px 0;
     }
 
     button {
-      width: 100%;
-      padding: 12px;
-      background: black;
-      color: white;
-      border: black;
+      width:100%; padding:12px;
+      background:black; color:white;
+      border:none;
     }
   </style>
 </head>
@@ -37,42 +27,36 @@
 
 <h2>Checkout</h2>
 
-<div class="form">
-  <input type="text" id="name" placeholder="Your Name">
-  <input type="text" id="phone" placeholder="Phone Number">
-  <textarea id="location" placeholder="Delivery Location"></textarea>
+<div class="box">
+  <input id="name" placeholder="Name">
+  <input id="phone" placeholder="Phone">
+  <textarea id="location" placeholder="Location"></textarea>
 
-  <button onclick="checkout()">Pay with M-Pesa</button>
- <span>
-  <a href="shop.html" class="btn">Back</a>
- </span>
+  <button onclick="send()">Place Order</button>
 </div>
 
 <script>
-function checkout() {
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let location = document.getElementById("location").value;
+function send(){
 
-  let message = `New Order:
-Name: ${name}
-Phone: ${phone}
-Location: ${location}`;
-let cart = [];
+  let name=document.getElementById("name").value;
+  let phone=document.getElementById("phone").value;
+  let location=document.getElementById("location").value;
 
-function addToCart(product, price) {
-  cart.push({product, price});
-  document.getElementById("cart-count").innerText = cart.length;
-}
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function goToCheckout() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  window.location.href = "checkout.html";
-}
+  let msg="NEW ORDER%0A%0A";
+  let total=0;
 
-  let whatsapp = "https://wa.me/+254 752 902370?text=" + encodeURIComponent(message);
+  cart.forEach(item=>{
+    let sum=item.price*item.qty;
+    total+=sum;
+    msg+=`${item.name} x${item.qty} = Ksh ${sum}%0A`;
+  });
 
-  window.location.href = whatsapp;
+  msg+=`%0ATOTAL: Ksh ${total}%0A%0A`;
+  msg+=`Name: ${name}%0APhone: ${phone}%0ALocation: ${location}`;
+
+  window.location.href="https://wa.me/254XXXXXXXXX?text="+msg;
 }
 </script>
 

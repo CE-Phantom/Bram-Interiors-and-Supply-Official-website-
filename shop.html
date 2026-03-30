@@ -190,13 +190,14 @@
             border-radius: 4px;
         }
 
-        .color-input {
+        .color-select {
             width: 100%;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
+            background: white;
         }
 
         .add-to-cart {
@@ -383,7 +384,7 @@
 </div>
 
 <script>
-    // Product data with categories that need color
+    // Product data
     const products = [
         { id: 1, name: '18mm MDF Board (4x8 ft)', price: 4500, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
         { id: 2, name: '12mm Plywood (4x8 ft)', price: 3800, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
@@ -399,9 +400,14 @@
         { id: 12, name: 'Laminate Sheet (4x8 ft)', price: 3200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true }
     ];
 
+    // Color options for dropdown
+    const colorOptions = [
+        "Blue", "Green", "Orange", "Red", "Violet", "Yellow",
+        "Chocolate Brown", "Light Grey", "Mid Grey", "Black"
+    ];
+
     let cart = [];
 
-    // DOM elements
     const productsGrid = document.getElementById('productsGrid');
     const cartItemsDiv = document.getElementById('cartItems');
     const cartCountSpan = document.getElementById('cartCount');
@@ -459,12 +465,18 @@
         const quantity = parseInt(document.getElementById(`qty-${productId}`).value);
         let color = '';
         if (product.needsColor) {
-            color = document.getElementById(`color-${productId}`).value.trim();
+            const select = document.getElementById(`color-${productId}`);
+            if (!select) {
+                showNotification('Error: Color selector missing');
+                return;
+            }
+            color = select.value;
             if (!color) {
-                showNotification('Please enter a color preference for this item.');
+                showNotification('Please select a color for this item.');
                 return;
             }
         }
+        // Check for existing item with same id and color
         const existing = cart.find(item => item.id === productId && item.color === color);
         if (existing) {
             existing.quantity += quantity;
@@ -498,9 +510,15 @@
 
     function displayProducts() {
         productsGrid.innerHTML = products.map(product => {
-            const colorField = product.needsColor ? `
-                <input type="text" class="color-input" id="color-${product.id}" placeholder="Color / Finish (e.g., White, Walnut, Natural)" required>
-            ` : '';
+            let colorHtml = '';
+            if (product.needsColor) {
+                colorHtml = `
+                    <select class="color-select" id="color-${product.id}" required>
+                        <option value="">Select Color</option>
+                        ${colorOptions.map(c => `<option value="${c}">${c}</option>`).join('')}
+                    </select>
+                `;
+            }
             return `
                 <div class="product-card">
                     <span class="product-badge">${product.category}</span>
@@ -512,7 +530,7 @@
                             <div class="quantity-row">
                                 <input type="number" min="1" value="1" class="quantity-selector" id="qty-${product.id}">
                             </div>
-                            ${colorField}
+                            ${colorHtml}
                             <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
                         </div>
                     </div>

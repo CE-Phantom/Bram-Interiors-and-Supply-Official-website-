@@ -63,7 +63,7 @@
             display: inline-block;
             background-color: var(--primary-color);
             color: white;
-            padding: 14px 30px;
+            padding: 12px 24px;  /* Reduced from 14px 30px */
             border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
@@ -72,7 +72,7 @@
             transition: var(--transition);
             border: 2px solid var(--primary-color);
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.9rem; /* Slightly smaller */
         }
         .btn:hover {
             background-color: transparent;
@@ -185,7 +185,7 @@
             width: 100%;
         }
         .mobile-menu-btn {
-            display: flex;
+            display: none;
             background: none;
             border: none;
             font-size: 1.5rem;
@@ -194,7 +194,7 @@
         }
         /* ---------- HERO SECTION ---------- */
         .hero {
-            height: 40vh;
+            height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
@@ -203,10 +203,10 @@
             align-items: center;
             color: white;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 100px;
         }
         .hero-content {
-            max-width: auto;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
@@ -222,7 +222,7 @@
         }
         .hero-buttons {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -507,32 +507,34 @@
         }
         @media (max-width: 768px) {
             .header-container { padding: 15px; }
+            /* Mobile menu slides from right */
             nav {
                 position: fixed;
-                top: 100px;
-                left: 0;
-                width: 100%;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
                 background-color: white;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                padding: 20px;
-                transform: translateY(-100%);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                padding: 80px 30px 30px;
+                transition: right 0.3s ease;
+                z-index: 999;
+                overflow-y: auto;
             }
             nav.active {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+                right: 0;
             }
             nav ul {
                 flex-direction: column;
+                gap: 20px;
             }
             nav ul li {
-                margin: 0 0 15px 0;
+                margin: 0;
             }
             .mobile-menu-btn {
                 display: block;
+                z-index: 1000;
+                position: relative;
             }
             .hero h1 {
                 font-size: 2.8rem;
@@ -543,6 +545,7 @@
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 12px;
             }
             .process-steps {
                 grid-template-columns: 1fr;
@@ -638,7 +641,7 @@
         </div>
     </section>
 
-    <!-- Services Section (existing) -->
+    <!-- Services Section -->
     <section class="services section-padding" id="services">
         <div class="container">
             <div class="section-title">
@@ -647,7 +650,7 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('residential.png');"></div>
+                    <div class="service-img" style="background-image: url('residential.jpg');"></div>
                     <div class="service-content">
                         <h3>Residential Design</h3>
                         <p>Complete interior design for homes – kitchens, bedrooms, living rooms, and more.</p>
@@ -655,7 +658,7 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('office.png');"></div>
+                    <div class="service-img" style="background-image: url('office.jpg');"></div>
                     <div class="service-content">
                         <h3>Commercial Design</h3>
                         <p>Functional and beautiful workspaces that boost productivity and brand image.</p>
@@ -663,7 +666,7 @@
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('room-plan.png');"></div>
+                    <div class="service-img" style="background-image: url('room-plan.jpg');"></div>
                     <div class="service-content">
                         <h3>Space Planning</h3>
                         <p>Optimise your layout for flow, functionality, and aesthetics.</p>
@@ -671,7 +674,7 @@
                     </div>
                 </div>                
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('lobby.png');"></div>
+                    <div class="service-img" style="background-image: url('lobby.jpg');"></div>
                     <div class="service-content">
                         <h3>Material Supply</h3>
                         <p>High-quality boards, hardware, adhesives, and more – available for your own projects.</p>
@@ -752,7 +755,7 @@
                     <a href="#contact" class="btn">Request a Consultation</a>
                 </div>
                 <div class="portfolio-item">
-                    <img src="director.jpg" alt="Director" class="portfolio-img">
+                    <img src="Director.jpg" alt="Director" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Meet the Designer</h3>
                         <p>Bramwel Otieno Odondi</p>
@@ -769,12 +772,12 @@
         </div>
     </section>
 
-    <!-- Contact Section with Enhanced Form -->
+    <!-- Contact Section with WhatsApp Quotation -->
     <section class="contact section-padding" id="contact">
         <div class="container">
             <div class="section-title">
                 <h2>Request a Quotation</h2>
-                <p>Tell me about your project – I'll get back to you within 24 hours</p>
+                <p>Tell me about your project – I'll reply via WhatsApp within 24 hours</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
@@ -801,18 +804,15 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="designRequestForm">
+                    <form id="quotationForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" id="quoteName" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
+                            <input type="tel" id="quotePhone" placeholder="Phone Number (for WhatsApp)" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <select required>
+                            <select id="quoteRoom" required>
                                 <option value="">Room Type / Project Type *</option>
                                 <option>Living Room</option>
                                 <option>Kitchen</option>
@@ -823,10 +823,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Approximate Area (square metres)">
+                            <input type="text" id="quoteArea" placeholder="Approximate Area (square metres)">
                         </div>
                         <div class="form-group">
-                            <select>
+                            <select id="quoteStyle">
                                 <option value="">Preferred Style (optional)</option>
                                 <option>Modern</option>
                                 <option>Traditional</option>
@@ -836,7 +836,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <select>
+                            <select id="quoteBudget">
                                 <option value="">Budget Range (optional)</option>
                                 <option>Below 50,000 KSh</option>
                                 <option>50,000 – 150,000 KSh</option>
@@ -845,9 +845,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea rows="5" placeholder="Tell me about your project: ideas, requirements, timeline, etc." required></textarea>
+                            <textarea id="quoteMessage" rows="5" placeholder="Tell me about your project: ideas, requirements, timeline, etc." required></textarea>
                         </div>
-                        <button type="submit" class="btn">Request Quotation</button>
+                        <button type="submit" class="btn">Send via WhatsApp</button>
                     </form>
                 </div>
             </div>
@@ -913,7 +913,7 @@
     </footer>
 
     <script>
-        // Mobile Menu Toggle
+        // Mobile Menu Toggle (slide from right)
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
         mobileMenuBtn.addEventListener('click', () => {
@@ -941,11 +941,52 @@
             });
         });
         
-        // Form submission (simulate sending; in practice, send via AJAX or email)
-        const form = document.getElementById('designRequestForm');
+        // WhatsApp Quotation Form Submission
+        const form = document.getElementById('quotationForm');
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your request! I will contact you within 24 hours to schedule a consultation and site visit.');
+            
+            // Get form values
+            const name = document.getElementById('quoteName').value.trim();
+            const phone = document.getElementById('quotePhone').value.trim();
+            const room = document.getElementById('quoteRoom').value;
+            const area = document.getElementById('quoteArea').value.trim();
+            const style = document.getElementById('quoteStyle').value;
+            const budget = document.getElementById('quoteBudget').value;
+            const message = document.getElementById('quoteMessage').value.trim();
+            
+            // Validate required fields
+            if (!name || !phone || !room || !message) {
+                alert('Please fill in all required fields (Name, Phone, Project Type, and Message).');
+                return;
+            }
+            
+            // Format phone number (ensure it's in international format without +)
+            let formattedPhone = phone.replace(/\D/g, '');
+            if (formattedPhone.startsWith('0')) {
+                formattedPhone = '254' + formattedPhone.substring(1);
+            } else if (!formattedPhone.startsWith('254') && formattedPhone.length === 9) {
+                formattedPhone = '254' + formattedPhone;
+            }
+            
+            // Build WhatsApp message
+            let whatsappMessage = `*NEW DESIGN QUOTATION REQUEST*\n\n` +
+                `*Name:* ${name}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Project Type:* ${room}\n` +
+                `*Area:* ${area || 'Not specified'}\n` +
+                `*Style:* ${style || 'Not specified'}\n` +
+                `*Budget:* ${budget || 'Not specified'}\n\n` +
+                `*Details:*\n${message}`;
+            
+            // Encode and open WhatsApp
+            const encodedMsg = encodeURIComponent(whatsappMessage);
+            const whatsappUrl = `https://wa.me/+254752902370?text=${encodedMsg}`;
+            
+            window.open(whatsappUrl, '_blank');
+            
+            // Optionally reset form and show confirmation
+            alert('Your request has been prepared. WhatsApp will open so you can send it.');
             form.reset();
         });
         
@@ -960,4 +1001,4 @@
         });
     </script>
 </body>
-</html>
+    </html>

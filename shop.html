@@ -90,7 +90,6 @@
             font-weight: bold;
         }
 
-        /* Shop Title */
         .shop-title {
             text-align: center;
             margin: 40px 0 20px;
@@ -108,7 +107,6 @@
             font-size: 1.1rem;
         }
 
-        /* Main Layout */
         .shop-main {
             padding: 20px 0 60px;
         }
@@ -119,7 +117,6 @@
             gap: 40px;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -177,11 +174,32 @@
 
         .product-actions {
             display: flex;
+            flex-direction: column;
             gap: 10px;
         }
 
+        .quantity-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quantity-selector {
+            width: 70px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .color-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+
         .add-to-cart {
-            flex: 1;
             padding: 10px;
             background-color: var(--primary-color);
             color: white;
@@ -194,13 +212,6 @@
 
         .add-to-cart:hover {
             background-color: var(--accent-color);
-        }
-
-        .quantity-selector {
-            width: 60px;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
         }
 
         /* Cart Sidebar */
@@ -241,6 +252,11 @@
         .cart-item-title {
             font-weight: 600;
             margin-bottom: 5px;
+        }
+
+        .cart-item-detail {
+            font-size: 0.85rem;
+            color: var(--light-text);
         }
 
         .cart-item-price {
@@ -315,7 +331,6 @@
             background-color: var(--accent-color);
         }
 
-        /* Responsive */
         @media (max-width: 992px) {
             .shop-container {
                 grid-template-columns: 1fr;
@@ -329,7 +344,6 @@
 </head>
 <body>
 
-<!-- Header -->
 <div class="shop-header">
     <div class="container">
         <div class="header-content">
@@ -344,20 +358,15 @@
     </div>
 </div>
 
-<!-- Shop Title -->
 <div class="container shop-title">
     <h1>Raw Materials & Hardware</h1>
     <p>Premium boards, screws, hinges, and more for your interior projects</p>
 </div>
 
-<!-- Main Shop Content -->
 <div class="shop-main">
     <div class="container">
         <div class="shop-container">
-            <!-- Products Grid -->
             <div class="products-grid" id="productsGrid"></div>
-
-            <!-- Cart Sidebar -->
             <div class="cart-sidebar">
                 <h3>Shopping Cart</h3>
                 <div class="cart-items" id="cartItems">
@@ -367,52 +376,49 @@
                     <span>Total:</span>
                     <span id="cartTotal">KSh 0</span>
                 </div>
-                <a href="checkout.html" class="checkout-btn" id="checkoutBtn" style="display: inline-block;">Proceed to Checkout</a>
+                <a href="checkout.html" class="checkout-btn" id="checkoutBtn">Proceed to Checkout</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // ---------- Product Data (Raw Materials) ----------
+    // Product data with categories that need color
     const products = [
-        { id: 1, name: '18mm MDF Board (4x8 ft)', price: 4500, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards' },
-        { id: 2, name: '12mm Plywood (4x8 ft)', price: 3800, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards' },
-        { id: 3, name: 'Wood Screws (50mm) - 100pcs', price: 850, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware' },
-        { id: 4, name: 'Drywall Screws (25mm) - 200pcs', price: 650, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware' },
-        { id: 5, name: 'Cabinet Hinges (Soft-close) - 10pcs', price: 2200, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware' },
-        { id: 6, name: 'Drawer Slides (45cm) - Pair', price: 1800, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware' },
-        { id: 7, name: 'Wood Glue (1L)', price: 950, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Adhesives' },
-        { id: 8, name: 'Sandpaper Assorted (10 sheets)', price: 350, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Tools' },
-        { id: 9, name: 'Edge Banding Tape (22mm) - 50m', price: 1200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim' },
-        { id: 10, name: 'PVC Skirting Board (2.4m)', price: 850, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim' },
-        { id: 11, name: 'Nails (50mm) - 1kg', price: 450, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware' },
-        { id: 12, name: 'Laminate Sheet (4x8 ft)', price: 3200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards' }
+        { id: 1, name: '18mm MDF Board (4x8 ft)', price: 4500, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
+        { id: 2, name: '12mm Plywood (4x8 ft)', price: 3800, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
+        { id: 3, name: 'Wood Screws (50mm) - 100pcs', price: 850, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
+        { id: 4, name: 'Drywall Screws (25mm) - 200pcs', price: 650, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
+        { id: 5, name: 'Cabinet Hinges (Soft-close) - 10pcs', price: 2200, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
+        { id: 6, name: 'Drawer Slides (45cm) - Pair', price: 1800, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
+        { id: 7, name: 'Wood Glue (1L)', price: 950, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Adhesives', needsColor: true },
+        { id: 8, name: 'Sandpaper Assorted (10 sheets)', price: 350, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Tools', needsColor: false },
+        { id: 9, name: 'Edge Banding Tape (22mm) - 50m', price: 1200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim', needsColor: true },
+        { id: 10, name: 'PVC Skirting Board (2.4m)', price: 850, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim', needsColor: true },
+        { id: 11, name: 'Nails (50mm) - 1kg', price: 450, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
+        { id: 12, name: 'Laminate Sheet (4x8 ft)', price: 3200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true }
     ];
 
     let cart = [];
 
-    // ---------- DOM Elements ----------
+    // DOM elements
     const productsGrid = document.getElementById('productsGrid');
     const cartItemsDiv = document.getElementById('cartItems');
     const cartCountSpan = document.getElementById('cartCount');
     const cartTotalSpan = document.getElementById('cartTotal');
 
-    // ---------- Helper Functions ----------
-    function showNotification(msg, type = 'success') {
+    function showNotification(msg) {
         const notif = document.createElement('div');
-        notif.style.cssText = `position:fixed; top:100px; right:20px; background:${type==='error'?'#ff4444':type==='info'?'#2196F3':'var(--primary-color)'}; color:white; padding:15px 25px; border-radius:4px; z-index:3000; animation:slideIn 0.3s ease;`;
+        notif.style.cssText = `position:fixed; top:100px; right:20px; background:var(--primary-color); color:white; padding:15px 25px; border-radius:4px; z-index:3000; animation:slideIn 0.3s ease;`;
         notif.textContent = msg;
         document.body.appendChild(notif);
         setTimeout(() => notif.remove(), 3000);
     }
 
-    // Save cart to localStorage
     function saveCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
     }
 
-    // Update cart display and localStorage
     function updateCartDisplay() {
         if (cart.length === 0) {
             cartItemsDiv.innerHTML = '<p style="text-align:center; color:var(--light-text);">Your cart is empty</p>';
@@ -431,7 +437,8 @@
                 <div class="cart-item">
                     <div class="cart-item-info">
                         <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">KSh ${item.price.toLocaleString()}</div>
+                        ${item.color ? `<div class="cart-item-detail">Color: ${item.color}</div>` : ''}
+                        <div class="cart-item-price">KSh ${item.price.toLocaleString()} each</div>
                     </div>
                     <div class="cart-item-quantity">
                         <button onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
@@ -447,21 +454,31 @@
         saveCart();
     }
 
-    // Add to cart
     window.addToCart = function(productId) {
         const product = products.find(p => p.id === productId);
         const quantity = parseInt(document.getElementById(`qty-${productId}`).value);
-        const existing = cart.find(item => item.id === productId);
+        let color = '';
+        if (product.needsColor) {
+            color = document.getElementById(`color-${productId}`).value.trim();
+            if (!color) {
+                showNotification('Please enter a color preference for this item.');
+                return;
+            }
+        }
+        const existing = cart.find(item => item.id === productId && item.color === color);
         if (existing) {
             existing.quantity += quantity;
         } else {
-            cart.push({ ...product, quantity: quantity });
+            cart.push({
+                ...product,
+                quantity: quantity,
+                color: color
+            });
         }
         updateCartDisplay();
         showNotification(`${product.name} added to cart!`);
     };
 
-    // Update quantity
     window.updateQuantity = function(productId, newQuantity) {
         if (newQuantity < 1) {
             removeFromCart(productId);
@@ -474,31 +491,36 @@
         }
     };
 
-    // Remove from cart
     window.removeFromCart = function(productId) {
         cart = cart.filter(i => i.id !== productId);
         updateCartDisplay();
     };
 
-    // Display products
     function displayProducts() {
-        productsGrid.innerHTML = products.map(product => `
-            <div class="product-card">
-                <span class="product-badge">${product.category}</span>
-                <img src="${product.image}" alt="${product.name}" class="product-img">
-                <div class="product-info">
-                    <h3 class="product-title">${product.name}</h3>
-                    <p class="product-price">KSh ${product.price.toLocaleString()}</p>
-                    <div class="product-actions">
-                        <input type="number" min="1" value="1" class="quantity-selector" id="qty-${product.id}">
-                        <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+        productsGrid.innerHTML = products.map(product => {
+            const colorField = product.needsColor ? `
+                <input type="text" class="color-input" id="color-${product.id}" placeholder="Color / Finish (e.g., White, Walnut, Natural)" required>
+            ` : '';
+            return `
+                <div class="product-card">
+                    <span class="product-badge">${product.category}</span>
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">KSh ${product.price.toLocaleString()}</p>
+                        <div class="product-actions">
+                            <div class="quantity-row">
+                                <input type="number" min="1" value="1" class="quantity-selector" id="qty-${product.id}">
+                            </div>
+                            ${colorField}
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
     }
 
-    // Load cart from localStorage on page load
     function loadCart() {
         const stored = localStorage.getItem('cart');
         if (stored) {
@@ -509,16 +531,13 @@
         updateCartDisplay();
     }
 
-    // Cart icon scroll to cart
     document.getElementById('cartIcon').addEventListener('click', () => {
         document.querySelector('.cart-sidebar').scrollIntoView({ behavior: 'smooth' });
     });
 
-    // Initialize
     displayProducts();
     loadCart();
 
-    // Add animation keyframes
     const style = document.createElement('style');
     style.textContent = `@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }`;
     document.head.appendChild(style);

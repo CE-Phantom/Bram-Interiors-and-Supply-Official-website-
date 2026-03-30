@@ -1,161 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bram Interiors Shop</title>
+  <title>Bram Interiors Supply Store</title>
   <style>
-    body {
-      font-family: Arial;
-      margin: 0;
-      background: #f5f5f5;
-    }
+    body { font-family: Arial; margin:0; background:#f4f6f8; }
 
     header {
-      background: black;
-      color: white;
-      padding: 15px;
-      text-align: center;
+      background:#111; color:white; padding:20px;
+      text-align:center; font-size:24px;
     }
 
     .cart {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      background: white;
-      padding: 10px;
-      border-radius: 8px;
+      position:fixed; top:15px; right:15px;
+      background:white; padding:10px 15px;
+      border-radius:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1);
     }
 
     .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:20px; padding:20px;
     }
 
     .product {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
+      background:white; padding:15px;
+      border-radius:12px; text-align:center;
+      box-shadow:0 5px 12px rgba(0,0,0,0.08);
     }
 
     .product img {
-      width: 100%;
-      border-radius: 10px;
+      width:100%; height:140px;
+      object-fit:cover; border-radius:10px;
     }
 
-    button {
-      background: black;
-      color: white;
-      border: none;
-      padding: 10px;
-      margin-top: 10px;
-      cursor: pointer;
+    .product button {
+      margin-top:10px; padding:10px;
+      background:black; color:white;
+      border:none; border-radius:6px;
+    }
+
+    .checkout-btn {
+      display:block; margin:20px auto;
+      padding:15px 30px; background:#27ae60;
+      color:white; border:none; border-radius:8px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Bram Interiors Shop</h1>
-</header>
+<header>Bram Interiors Materials Store</header>
 
-<div class="cart">
-  🛒 Cart: <span id="cart-count">0</span>
-</div>
+<div class="cart">🛒 <span id="count">0</span></div>
 
 <div class="products">
 
-  <!-- 10 PRODUCTS -->
-  <div class="product">
-    <img src="images/product1.jpg">
-    <h3>Modern Sofa</h3>
-    <p>Ksh 25,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
+  <!-- PRODUCTS -->
+  <script>
+    const items = [
+      ["Gypsum Board",1200,"gypsum.jpg"],
+      ["Plywood",2500,"plywood.jpg"],
+      ["MDF Board",2000,"mdf.jpg"],
+      ["Metal Studs",1500,"metal.jpg"],
+      ["Ceiling Boards",1800,"ceiling.jpg"],
+      ["Screws Box",800,"screws.jpg"],
+      ["Adhesive",600,"glue.jpg"],
+      ["Paint Bucket",3500,"paint.jpg"],
+      ["PVC Panels",2200,"pvc.jpg"],
+      ["Nails Pack",500,"nails.jpg"]
+    ];
 
-  <div class="product">
-    <img src="images/product2.jpg">
-    <h3>Luxury Curtains</h3>
-    <p>Ksh 5,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
+    let cart = [];
 
-  <div class="product">
-    <img src="images/product3.jpg">
-    <h3>Wallpaper</h3>
-    <p>Ksh 2,500</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
+    items.forEach((item,i)=>{
+      document.write(`
+      <div class="product">
+        <img src="images/${item[2]}">
+        <h3>${item[0]}</h3>
+        <p>Ksh ${item[1]}</p>
+        <input type="number" min="1" value="1" id="qty${i}">
+        <button onclick="add('${item[0]}',${item[1]},${i})">Add</button>
+      </div>
+      `);
+    });
 
-  <div class="product">
-    <img src="images/product4.jpg">
-    <h3>Office Desk</h3>
-    <p>Ksh 15,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
+    function add(name,price,i){
+      let qty = document.getElementById("qty"+i).value;
+      cart.push({name,price,qty});
+      document.getElementById("count").innerText = cart.length;
+    }
 
-  <div class="product">
-    <img src="images/product5.jpg">
-    <h3>Bed Frame</h3>
-    <p>Ksh 20,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/product6.jpg">
-    <h3>Kitchen Cabinet</h3>
-    <p>Ksh 30,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/product7.jpg">
-    <h3>TV Stand</h3>
-    <p>Ksh 12,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/product8.jpg">
-    <h3>Wall Shelves</h3>
-    <p>Ksh 4,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/product9.jpg">
-    <h3>Blinds</h3>
-    <p>Ksh 6,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
-
-  <div class="product">
-    <img src="images/product10.jpg">
-    <h3>Dining Table</h3>
-    <p>Ksh 18,000</p>
-    <button onclick="addToCart()">Add to Cart</button>
-  </div>
+    function checkout(){
+      localStorage.setItem("cart",JSON.stringify(cart));
+      window.location.href="checkout.html";
+    }
+  </script>
 
 </div>
-<button onclick="goToCheckout()">Checkout</button>
-  <span>
-<a href="index.html" class="btn">Back</a>
-  </span>
-<script>
-  let count = 0;
 
-  function addToCart() {
-    count++;
-    document.getElementById("cart-count").innerText = count;
-  }
-
-function goToCheckout() {
-  window.location.href = "checkout.html";
-}
-
-</script>
+<button class="checkout-btn" onclick="checkout()">Checkout</button>
 
 </body>
-                                               </html>
+</html>

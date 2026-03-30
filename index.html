@@ -3,51 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bram Interiors and Supply | Luxury Interior Design</title>
+    <title>Bram Interiors | Interior Design & Supply</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300  ;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* ---------- RESET & VARIABLES ---------- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
         :root {
-            --primary-color: #2a5c3d; /* Sage green */
-            --secondary-color: #d4af8c; /* Warm beige */
-            --accent-color: #8a6e4d; /* Rich brown */
+            --primary-color: #2a5c3d;
+            --secondary-color: #d4af8c;
+            --accent-color: #8a6e4d;
             --light-color: #f8f5f2;
             --dark-color: #1a1a1a;
             --text-color: #333;
             --light-text: #777;
             --transition: all 0.3s ease;
         }
-        
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             overflow-x: hidden;
         }
-        
         h1, h2, h3, h4, h5 {
             font-family: 'Playfair Display', serif;
             font-weight: 500;
             line-height: 1.3;
             margin-bottom: 1rem;
         }
-        
-        h1 {
-            font-size: 3.5rem;
-        }
-        
+        h1 { font-size: 3.5rem; }
         h2 {
             font-size: 2.5rem;
             position: relative;
             padding-bottom: 1rem;
         }
-        
         h2:after {
             content: '';
             position: absolute;
@@ -57,27 +50,15 @@
             height: 3px;
             background-color: var(--secondary-color);
         }
-        
-        h3 {
-            font-size: 1.8rem;
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
+        h3 { font-size: 1.8rem; }
+        p { margin-bottom: 1.5rem; font-size: 1.1rem; }
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
-        .section-padding {
-            padding: 80px 0;
-        }
-        
+        .section-padding { padding: 80px 0; }
         .btn {
             display: inline-block;
             background-color: var(--primary-color);
@@ -90,47 +71,42 @@
             letter-spacing: 1px;
             transition: var(--transition);
             border: 2px solid var(--primary-color);
+            cursor: pointer;
+            font-size: 1rem;
         }
-        
         .btn:hover {
             background-color: transparent;
             color: var(--primary-color);
         }
-        
         .btn-secondary {
             background-color: var(--secondary-color);
             border-color: var(--secondary-color);
+            color: var(--dark-color);
         }
-        
         .btn-secondary:hover {
             background-color: transparent;
             color: var(--accent-color);
         }
-        
-        /* Header Styles */
+        /* ---------- HEADER ---------- */
         header {
             background-color: white;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
         }
-        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px;
         }
-        
-        /* Logo Styles */
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
-        
         .logo-icon {
             display: flex;
             align-items: center;
@@ -143,7 +119,6 @@
             position: relative;
             overflow: hidden;
         }
-        
         .logo-icon:before {
             content: '';
             position: absolute;
@@ -152,7 +127,6 @@
             border: 3px solid var(--secondary-color);
             border-radius: 50%;
         }
-        
         .logo-icon:after {
             content: '';
             position: absolute;
@@ -162,35 +136,30 @@
             border-radius: 50%;
             opacity: 0.7;
         }
-        
         .logo-text {
             display: flex;
             flex-direction: column;
         }
-        
         .logo-text h1 {
             font-size: 1.8rem;
             margin: 0;
             color: var(--primary-color);
             line-height: 1.2;
         }
-        
         .logo-text span {
             font-size: 0.9rem;
             color: var(--light-text);
             font-weight: 400;
             letter-spacing: 1.5px;
         }
-        
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
-        
         nav ul li {
             margin-left: 30px;
         }
-        
         nav ul li a {
             text-decoration: none;
             color: var(--dark-color);
@@ -199,11 +168,9 @@
             transition: var(--transition);
             position: relative;
         }
-        
         nav ul li a:hover {
             color: var(--primary-color);
         }
-        
         nav ul li a:after {
             content: '';
             position: absolute;
@@ -214,11 +181,9 @@
             background-color: var(--primary-color);
             transition: var(--transition);
         }
-        
         nav ul li a:hover:after {
             width: 100%;
         }
-        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -227,11 +192,10 @@
             color: var(--dark-color);
             cursor: pointer;
         }
-        
-        /* Hero Section */
+        /* ---------- HERO SECTION ---------- */
         .hero {
-            height: 50vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1615529328331-f8917597711f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -241,135 +205,159 @@
             text-align: center;
             margin-top: 100px;
         }
-        
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-        
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1.5rem;
             color: white;
         }
-        
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255,255,255,0.9);
         }
-        
-        /* Services Section */
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        /* ---------- PROCESS SECTION ---------- */
+        .process {
+            background-color: white;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .step {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--light-color);
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .step p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+        /* ---------- SERVICES (existing) ---------- */
         .services {
             background-color: var(--light-color);
         }
-        
         .section-title {
             text-align: center;
             margin-bottom: 3rem;
         }
-        
         .section-title h2 {
             display: inline-block;
         }
-        
         .section-title h2:after {
             left: 50%;
             transform: translateX(-50%);
         }
-        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
-        
         .service-card {
             background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: var(--transition);
         }
-        
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        
         .service-img {
             height: 200px;
             background-size: cover;
             background-position: center;
         }
-        
         .service-content {
             padding: 25px;
         }
-        
         .service-content h3 {
             margin-bottom: 10px;
         }
-        
-        /* Portfolio Section */
+        /* ---------- PORTFOLIO ---------- */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 25px;
         }
-        
         .portfolio-item {
             position: relative;
             height: 350px;
             border-radius: 8px;
             overflow: hidden;
         }
-        
         .portfolio-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
-        
         .portfolio-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
             color: white;
             padding: 30px;
             transform: translateY(20px);
             opacity: 0;
             transition: var(--transition);
         }
-        
         .portfolio-item:hover .portfolio-overlay {
             transform: translateY(0);
             opacity: 1;
         }
-        
         .portfolio-item:hover .portfolio-img {
             transform: scale(1.05);
         }
-        
-        /* About Section */
+        /* ---------- ABOUT ---------- */
         .about {
             background-color: var(--light-color);
         }
-        
         .about-content {
             display: flex;
             align-items: center;
             gap: 50px;
         }
-        
         .about-text {
             flex: 1;
         }
-        
         .about-img {
             flex: 1;
             height: 500px;
@@ -377,29 +365,24 @@
             overflow: hidden;
             box-shadow: 15px 15px 0 var(--secondary-color);
         }
-        
         .about-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        
-        /* Contact Section */
+        /* ---------- CONTACT ---------- */
         .contact-content {
             display: flex;
             gap: 50px;
         }
-        
         .contact-info {
             flex: 1;
         }
-        
         .contact-info-item {
             display: flex;
             align-items: center;
             margin-bottom: 25px;
         }
-        
         .contact-icon {
             width: 50px;
             height: 50px;
@@ -412,17 +395,15 @@
             color: var(--primary-color);
             font-size: 1.2rem;
         }
-        
         .contact-form {
             flex: 1;
         }
-        
         .form-group {
             margin-bottom: 20px;
         }
-        
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 15px;
             border: 1px solid #ddd;
@@ -431,40 +412,35 @@
             font-size: 1rem;
             transition: var(--transition);
         }
-        
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--primary-color);
         }
-        
-        /* Footer */
+        /* ---------- FOOTER ---------- */
         footer {
             background-color: var(--dark-color);
             color: white;
             padding: 60px 0 30px;
         }
-        
         .footer-content {
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
             margin-bottom: 40px;
         }
-        
         .footer-column {
             flex: 1;
             min-width: 250px;
             margin-bottom: 30px;
         }
-        
         .footer-column h3 {
             font-size: 1.5rem;
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 10px;
         }
-        
         .footer-column h3:after {
             content: '';
             position: absolute;
@@ -474,142 +450,118 @@
             height: 2px;
             background-color: var(--secondary-color);
         }
-        
         .footer-logo {
             margin-bottom: 20px;
         }
-        
         .social-links {
             display: flex;
             gap: 15px;
             margin-top: 20px;
         }
-        
         .social-links a {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255,255,255,0.1);
             border-radius: 50%;
             color: white;
             text-decoration: none;
             transition: var(--transition);
         }
-        
         .social-links a:hover {
             background-color: var(--secondary-color);
             transform: translateY(-3px);
         }
-        
         .footer-links li {
             list-style: none;
             margin-bottom: 10px;
         }
-        
         .footer-links a {
             color: #aaa;
             text-decoration: none;
             transition: var(--transition);
         }
-        
         .footer-links a:hover {
             color: var(--secondary-color);
             padding-left: 5px;
         }
-        
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255,255,255,0.1);
             color: #aaa;
             font-size: 0.9rem;
         }
-        
-        /* Responsive Styles */
+        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 992px) {
-            h1 {
-                font-size: 3rem;
-            }
-            
-            h2 {
-                font-size: 2.2rem;
-            }
-            
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.2rem; }
             .about-content, .contact-content {
                 flex-direction: column;
             }
-            
             .about-img {
                 order: -1;
             }
         }
-        
         @media (max-width: 768px) {
-            .header-container {
-                padding: 15px;
-            }
-            
+            .header-container { padding: 15px; }
             nav {
                 position: fixed;
                 top: 100px;
                 left: 0;
                 width: 100%;
                 background-color: white;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
                 padding: 20px;
                 transform: translateY(-100%);
                 opacity: 0;
                 visibility: hidden;
                 transition: var(--transition);
             }
-            
             nav.active {
                 transform: translateY(0);
                 opacity: 1;
                 visibility: visible;
             }
-            
             nav ul {
                 flex-direction: column;
             }
-            
             nav ul li {
                 margin: 0 0 15px 0;
             }
-            
             .mobile-menu-btn {
                 display: block;
             }
-            
             .hero h1 {
                 font-size: 2.8rem;
             }
-            
             .hero p {
                 font-size: 1.1rem;
             }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
         }
-        
         @media (max-width: 576px) {
             .section-padding {
                 padding: 60px 0;
             }
-            
             h1 {
                 font-size: 2.5rem;
             }
-            
             h2 {
                 font-size: 2rem;
             }
-            
             .hero {
                 height: 80vh;
                 margin-top: 80px;
             }
-            
             .portfolio-grid {
                 grid-template-columns: 1fr;
             }
@@ -624,14 +576,12 @@
                 <div> <img src="logo.jpg" alt="bram interiors logo" width="90" height="90"></div>
                 <div class="logo-text">
                     <h1><b>BRAM INTERIORS</b></h1>
-                    <span><b>And Supply</b></span>
+                    <span><b>Design & Supply</b></span>
                 </div>
             </a>
-            
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
-            
             <nav id="mainNav">
                 <ul>
                     <li><a href="#home">Home</a></li>
@@ -648,57 +598,88 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Transform Your Space</h1>
-            <p>Bramwel Interiors and Supply creates exquisite interior designs that blend elegance, functionality, and personal style to transform your living or working environment.</p>
-            <a href="#contact" class="btn">Schedule a Consultation</a>
+            <p>I'm Bramwel – an interior designer who brings your vision to life using premium materials from my own supply. Whether you need a complete design makeover or just the right materials for your DIY project, I'm here to help.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn">Request a Design Consultation</a>
+                <a href="shop.html" class="btn btn-secondary">Shop Raw Materials</a>
+            </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- How It Works (Design Process) -->
+    <section class="process section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>How It Works</h2>
+                <p>A simple, transparent process to bring your dream space to life</p>
+            </div>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-comment-dots"></i></div>
+                    <h3>1. Consultation</h3>
+                    <p>We discuss your needs, style preferences, and budget. I'll answer all your questions and share ideas.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-ruler-combined"></i></div>
+                    <h3>2. Site Measurement</h3>
+                    <p>I visit your space to take accurate measurements and assess the site – no guesswork, just precision.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-file-signature"></i></div>
+                    <h3>3. Detailed Quotation</h3>
+                    <p>You receive a transparent quote covering materials, labour, and timeline. No hidden costs.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><i class="fas fa-tools"></i></div>
+                    <h3>4. Design & Execution</h3>
+                    <p>I handle everything – from sourcing premium materials to installation. Your space, transformed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (existing) -->
     <section class="services section-padding" id="services">
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
-                <p>We offer comprehensive interior design solutions tailored to your unique vision and needs.</p>
+                <p>What I can do for you – from design to supply</p>
             </div>
-            
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('residential.jpg');"></div>
+                    <div class="service-img" style="background-image: url('residential.png');"></div>
                     <div class="service-content">
                         <h3>Residential Design</h3>
-                        <p>Create your dream home with our custom residential interior design services, from concept to completion.</p>
-                        <a href="#" class="btn btn-secondary">Learn More</a>
+                        <p>Complete interior design for homes – kitchens, bedrooms, living rooms, and more.</p>
+                        <a href="#contact" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
-                
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('office.jpg');"></div>
+                    <div class="service-img" style="background-image: url('office.png');"></div>
                     <div class="service-content">
                         <h3>Commercial Design</h3>
-                        <p>Enhance your business environment with innovative commercial designs that boost productivity and brand image.</p>
-                        <a href="#" class="btn btn-secondary">Learn More</a>
+                        <p>Functional and beautiful workspaces that boost productivity and brand image.</p>
+                        <a href="#contact" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('room-plan.jpg');"></div>
+                    <div class="service-img" style="background-image: url('room-plan.png');"></div>
                     <div class="service-content">
-                        <h3>Room Planning</h3>
-                        <p>Enhance your room with innovative and beautiful designs that boost productivity and brand image.</p>
-                        <a href="#" class="btn btn-secondary">Learn More</a>
+                        <h3>Space Planning</h3>
+                        <p>Optimise your layout for flow, functionality, and aesthetics.</p>
+                        <a href="#contact" class="btn btn-secondary">Learn More</a>
                     </div>
                 </div>                
                 <div class="service-card">
-                    <div class="service-img" style="background-image: url('lobby.jpg');"></div>
+                    <div class="service-img" style="background-image: url('lobby.png');"></div>
                     <div class="service-content">
-                        <h3>Furniture & Supply</h3>
-                        <p>Access our curated collection of premium furniture and materials to complete your interior design vision.</p>
-                        <a href="#" class="btn btn-secondary">Learn More</a>
+                        <h3>Material Supply</h3>
+                        <p>High-quality boards, hardware, adhesives, and more – available for your own projects.</p>
+                        <a href="shop.html" class="btn btn-secondary">Shop Now</a>
                     </div>
                 </div>
             </div>
         </div>
-        
-        </section>
     </section>
 
     <!-- Portfolio Section -->
@@ -706,48 +687,46 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Portfolio</h2>
-                <p>Explore some of our recent projects that showcase our design expertise and attention to detail.</p>
+                <p>See some of my recent projects – each one crafted with care and premium materials</p>
             </div>
-            
             <div class="portfolio-grid">
                 <div class="portfolio-item">
-                    <img src="modernlivingroom.jpg" alt="Modern Living Room" class="portfolio-img">
+                    <img src="modernlivingroom.png" alt="Modern Living Room" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Urban Elegance Apartment</h3>
                         <p>Modern living room design with clean lines and natural materials</p>
                     </div>
                 </div>
-
                 <div class="portfolio-item">
-                    <img src="bedroomwardrobes.jpg" alt="Bedroom Wardrobes" class="portfolio-img">
+                    <img src="bedroomwardrobes.png" alt="Bedroom Wardrobes" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <h3>Bedroom Ward robes</h3>
-                        <p>Modern Bedroom Wardrobes design with clean lines and natural materials</p>
+                        <h3>Bedroom Wardrobes</h3>
+                        <p>Custom built-in wardrobes using high-grade plywood and soft-close hardware</p>
                     </div>
                 </div>                
                 <div class="portfolio-item">
-                    <img src="corridor.jpg" alt="Modern Corridors" class="portfolio-img">
+                    <img src="corridor.png" alt="Modern Corridors" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Modern Corridor</h3>
-                        <p>Modern Modern Corridors design with clean lines and elegance</p>
+                        <p>Elegant hallway transformation with PVC skirting and wall panelling</p>
                     </div>
                 </div>                
                 <div class="portfolio-item">
-                    <img src="luxurykitchen.jpg" alt="Luxury Kitchen" class="portfolio-img">
+                    <img src="luxurykitchen.png" alt="Luxury Kitchen" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Gourmet Kitchen Renovation</h3>
-                        <p>High-end kitchen design with custom cabinetry and premium appliances</p>
+                        <p>Full kitchen redesign with custom cabinets, quartz countertops, and premium fixtures</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="curtain-rods.jpg" alt="Curtain Rods" class="portfolio-img">
+                    <img src="curtain-rods.png" alt="Curtain Rods" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Curtain Rods Installation</h3>
-                        <p>High-end modern Curtain Rods with premium appliances</p>
+                        <p>Modern curtain rods and drapery for a polished finish</p>
                     </div>
                 </div>                
                 <div class="portfolio-item">
-                    <img src="office.jpg" alt="Office Design" class="portfolio-img">
+                    <img src="office.png" alt="Office Design" class="portfolio-img">
                     <div class="portfolio-overlay">
                         <h3>Corporate Headquarters</h3>
                         <p>Contemporary office design promoting collaboration and productivity</p>
@@ -756,34 +735,33 @@
             </div>
         </div>
     </section>
-  <a href="shop.html" class="btn">Shop Now</a>
+
     <!-- About Section -->
     <section class="about section-padding" id="about">
         <div class="container">
             <div class="section-title">
                 <h2>About Us</h2>
-                <p>With over 15 years of experience, we bring creativity and expertise to every project.</p>
+                <p>I'm Bramwel – your trusted interior designer and material supplier</p>
             </div>
-            
             <div class="about-content">
                 <div class="about-text">
                     <h3>Creating Beautiful Spaces Since 2023</h3>
-                    <p>Bramwel Interiors and Supply was founded on the principle that exceptional interior design should be accessible to everyone. Our team of talented designers and craftsmen work collaboratively to bring your vision to life.</p>
-                    <p>We believe that great design is not just about aesthetics, but about creating spaces that enhance the way you live, work, and interact with your environment. From initial concept to final installation, we handle every detail with precision and care.</p>
-                    <p>Our comprehensive supply division ensures that we can source the finest materials and furnishings from around the world, giving you access to exclusive products that set your space apart.</p>
-                    <a href="#contact" class="btn">Get in Touch</a>
+                    <p>I believe great design is not just about aesthetics, but about creating spaces that enhance the way you live, work, and interact. With years of experience in interior design and a deep understanding of materials, I offer a unique combination: expert design advice and direct access to high‑quality raw materials.</p>
+                    <p>When you work with me, you get a single point of contact from concept to completion. I source the best boards, hardware, and finishes – often at better prices – and ensure every detail is executed to perfection.</p>
+                    <p>Ready to transform your space? Let's talk.</p>
+                    <a href="#contact" class="btn">Request a Consultation</a>
                 </div>
                 <div class="portfolio-item">
-                    <img src="director.jpg" alt="Director" class="portfolio-img">
+                    <img src="Director.png" alt="Director" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <h3>Meet Our Director</h3>
+                        <h3>Meet the Designer</h3>
                         <p>Bramwel Otieno Odondi</p>
                     </div>
                 </div>
                 <div class="portfolio-item">
-                    <img src="manager.jpg" alt="Manager" class="portfolio-img">
+                    <img src="manager.png" alt="Manager" class="portfolio-img">
                     <div class="portfolio-overlay">
-                        <h3>Meet Our Manager</h3>
+                        <h3>Meet the Manager</h3>
                         <p>Elvis Charles Otieno</p>
                     </div>
                 </div>
@@ -791,49 +769,39 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section with Enhanced Form -->
     <section class="contact section-padding" id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Ready to transform your space? Get in touch with our design team today.</p>
+                <h2>Request a Quotation</h2>
+                <p>Tell me about your project – I'll get back to you within 24 hours</p>
             </div>
-            
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
                             <h3>Visit Our Showroom</h3>
                             <p>Along Biashara Street<br>Siaya, 25 - 40600</p>
                         </div>
                     </div>
-                    
                     <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <h3>Call Us</h3>
-                            <p>+254 759 584 510 <br>+254 745 527 131<br>Mon-Fri, 8am-6pm EST</p>
+                            <h3>Call / WhatsApp</h3>
+                            <p>+254 759 584 510 <br>+254 745 527 131<br>Mon-Fri, 8am-6pm</p>
                         </div>
                     </div>
-                    
                     <div class="contact-info-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <h3>Email Us</h3>
-                            <p>bramwelodondi@gmail.com<br>response within 24 hours</p>
+                            <h3>Email</h3>
+                            <p>bramwelodondi@gmail.com<br>Response within 24 hours</p>
                         </div>
                     </div>
                 </div>
-                
                 <div class="contact-form">
-                    <form id="contactForm">
+                    <form id="designRequestForm">
                         <div class="form-group">
                             <input type="text" placeholder="Your Name" required>
                         </div>
@@ -841,12 +809,45 @@
                             <input type="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Subject" required>
+                            <input type="tel" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                            <select required>
+                                <option value="">Room Type / Project Type *</option>
+                                <option>Living Room</option>
+                                <option>Kitchen</option>
+                                <option>Bedroom</option>
+                                <option>Office</option>
+                                <option>Whole House</option>
+                                <option>Other</option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <div class="form-group">
+                            <input type="text" placeholder="Approximate Area (square metres)">
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option value="">Preferred Style (optional)</option>
+                                <option>Modern</option>
+                                <option>Traditional</option>
+                                <option>Minimalist</option>
+                                <option>Industrial</option>
+                                <option>Scandinavian</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select>
+                                <option value="">Budget Range (optional)</option>
+                                <option>Below 50,000 KSh</option>
+                                <option>50,000 – 150,000 KSh</option>
+                                <option>150,000 – 300,000 KSh</option>
+                                <option>Above 300,000 KSh</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Tell me about your project: ideas, requirements, timeline, etc." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Request Quotation</button>
                     </form>
                 </div>
             </div>
@@ -863,11 +864,11 @@
                             <div> <img src="logo.jpg" alt="bramwel interiors logo" width="80" height="80"></div>
                             <div class="logo-text">
                                 <h1>BRAM INTERIORS</h1>
-                                <span>And Supply</span>
+                                <span>Design & Supply</span>
                             </div>
                         </a>
                     </div>
-                    <p>Creating beautiful, functional spaces that reflect your personality and enhance your lifestyle through exceptional interior design.</p>
+                    <p>Creating beautiful, functional spaces – with the highest quality materials. Let's build your dream together.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -875,7 +876,6 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
@@ -884,9 +884,9 @@
                         <li><a href="#portfolio">Portfolio</a></li>
                         <li><a href="#about">About Us</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="shop.html">Shop Raw Materials</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Services</h3>
                     <ul class="footer-links">
@@ -894,22 +894,20 @@
                         <li><a href="#">Commercial Design</a></li>
                         <li><a href="#">Space Planning</a></li>
                         <li><a href="#">Furniture Selection</a></li>
-                        <li><a href="#">Custom Carpentry</a></li>
+                        <li><a href="#">Material Supply</a></li>
                     </ul>
                 </div>
-                
                 <div class="footer-column">
                     <h3>Newsletter</h3>
-                    <p>Subscribe to receive design tips and exclusive offers.</p>
+                    <p>Subscribe for design tips and exclusive offers.</p>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" style="width: 100%; padding: 12px; border-radius: 4px; border: none; margin-top: 10px;">
+                        <input type="email" placeholder="Your Email" style="width:100%; padding:12px; border-radius:4px; border:none; margin-top:10px;">
                     </div>
-                    <button class="btn" style="margin-top: 10px;">Subscribe</button>
+                    <button class="btn" style="margin-top:10px;">Subscribe</button>
                 </div>
             </div>
-            
             <div class="copyright">
-                <p>&copy; 2023 Bramwel Interiors and Supply. All rights reserved.</p>
+                <p>&copy; 2023 Bramwel Interiors. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -918,7 +916,6 @@
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mainNav = document.getElementById('mainNav');
-        
         mobileMenuBtn.addEventListener('click', () => {
             mainNav.classList.toggle('active');
             mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
@@ -930,16 +927,12 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 if(targetId === '#') return;
-                
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
-                    // Close mobile menu if open
                     mainNav.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    
                     window.scrollTo({
                         top: targetElement.offsetTop - 100,
                         behavior: 'smooth'
@@ -948,21 +941,21 @@
             });
         });
         
-        // Form submission
-        const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', function(e) {
+        // Form submission (simulate sending; in practice, send via AJAX or email)
+        const form = document.getElementById('designRequestForm');
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you within 24 hours.');
-            this.reset();
+            alert('Thank you for your request! I will contact you within 24 hours to schedule a consultation and site visit.');
+            form.reset();
         });
         
         // Header background on scroll
         window.addEventListener('scroll', function() {
             const header = document.querySelector('header');
             if(window.scrollY > 100) {
-                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
             } else {
-                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.08)';
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.08)';
             }
         });
     </script>

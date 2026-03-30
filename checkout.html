@@ -265,18 +265,17 @@
 
                 <form id="checkoutForm">
                     <div class="form-group">
-                        <label for="name">Name Of Client*</label>
-                        <input type="name" id="name" name="name" required placeholder="e.g., Bramwel Otieno Odondi">
-                        <small style="color: var(--light-text);">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Enter your full name">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone Number (for order confirmation) *</label>
-                        <input type="tel" id="phone" name="phone" required placeholder="e.g., 0712345678">
+                        <input type="tel" id="phone" required placeholder="e.g., 0712345678">
                         <small style="color: var(--light-text);">We'll contact you via WhatsApp/SMS</small>
                     </div>
                     <div class="form-group">
                         <label for="location">Delivery Location *</label>
-                        <textarea id="location" name="location" rows="3" required placeholder="Enter your full address, e.g., Nairobi, Westlands, Kimathi Street 123"></textarea>
+                        <textarea id="location" rows="3" required placeholder="Enter your full address, e.g., Nairobi, Westlands, Kimathi Street 123"></textarea>
                     </div>
                     <div class="error-message" id="errorMsg"></div>
                     <button type="submit" class="place-order-btn">
@@ -295,7 +294,7 @@
         function handleOrderSubmit(e) {
             e.preventDefault();
 
-            const nameInput = document.getElementById('name');
+            const nameInput = document.getElementById('fullName');
             const phoneInput = document.getElementById('phone');
             const locationInput = document.getElementById('location');
             const errorDiv = document.getElementById('errorMsg');
@@ -304,27 +303,26 @@
             errorDiv.style.display = 'none';
             errorDiv.textContent = '';
 
-            // Validate phone (simple)
-            let phone = phoneInput.value.trim();
-            if (!phone) {
+            // Get values
+            const customerName = nameInput.value.trim();
+            let customerPhone = phoneInput.value.trim();
+            const location = locationInput.value.trim();
+
+            // Validate
+            if (!customerName) {
+                showError('Please enter your name');
+                return;
+            }
+            if (!customerPhone) {
                 showError('Please enter your phone number');
                 return;
             }
-            // Remove any non-digit characters (except leading + maybe)
-            phone = phone.replace(/\D/g, '');
-            if (phone.length < 9 || phone.length > 13) {
+            // Format phone (optional, keep as entered for WhatsApp contact)
+            customerPhone = customerPhone.replace(/\D/g, '');
+            if (customerPhone.length < 9 || customerPhone.length > 13) {
                 showError('Please enter a valid phone number (e.g., 0712345678)');
                 return;
             }
-            // Prepend Kenya country code if not present
-            if (phone.startsWith('0')) {
-                phone = '254' + phone.substring(1);
-            } else if (!phone.startsWith('254') && phone.length === 9) {
-                // assume it's 9-digit number starting with 7
-                phone = '254' + phone;
-            }
-
-            const location = locationInput.value.trim();
             if (!location) {
                 showError('Please enter your delivery location');
                 return;
@@ -342,12 +340,13 @@
                 itemsText += `• ${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
             });
 
-            const message = `*NEW ORDER FOR BRAM INTERIORS*\n\n` +
+            // Include customer name in the message
+            const message = `*NEW ORDER FROM BRAM INTERIORS*\n\n` +
+                `*Customer:* ${customerName}\n` +
+                `*Phone:* ${customerPhone}\n` +
+                `*Delivery Location:* ${location}\n\n` +
                 `*Items:*\n${itemsText}\n` +
                 `*Total:* KSh ${total.toLocaleString()}\n\n` +
-                `*Customer Name:* +${name}\n` +
-                `*Customer Phone:* +${phone}\n` +
-                `*Delivery Location:* ${location}\n\n` +
                 `Thank you!`;
 
             // Encode for WhatsApp URL

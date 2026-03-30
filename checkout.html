@@ -290,6 +290,7 @@
         function handleOrderSubmit(e) {
             e.preventDefault();
 
+            const nameInput = document.getElementById('name');
             const phoneInput = document.getElementById('phone');
             const locationInput = document.getElementById('location');
             const errorDiv = document.getElementById('errorMsg');
@@ -336,7 +337,7 @@
                 itemsText += `• ${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
             });
 
-            const message = `*NEW ORDER FROM BRAM INTERIORS*\n\n` +
+            const message = `*NEW ORDER FOR BRAM INTERIORS*\n\n` +
                 `*Items:*\n${itemsText}\n` +
                 `*Total:* KSh ${total.toLocaleString()}\n\n` +
                 `*Customer Phone:* +${phone}\n` +

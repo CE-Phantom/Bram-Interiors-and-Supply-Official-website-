@@ -1,74 +1,377 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Checkout</title>
-  <style>
-    body { font-family:Arial; padding:20px; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Bram Interiors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .box {
-      max-width:400px;
-      margin:auto;
-    }
+        :root {
+            --primary-color: #2a5c3d;
+            --secondary-color: #d4af8c;
+            --accent-color: #8a6e4d;
+            --light-color: #f8f5f2;
+            --dark-color: #1a1a1a;
+            --text-color: #333;
+            --light-text: #777;
+            --transition: all 0.3s ease;
+        }
 
-    input, textarea {
-      width:100%; padding:10px;
-      margin:10px 0;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding: 20px;
+        }
 
-    button {
-      width:100%; padding:12px;
-      background:black; color:white;
-      border:none;
-    }
-  </style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .checkout-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .back-button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .checkout-content {
+            padding: 30px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .order-summary {
+            background-color: var(--light-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .order-summary h3 {
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid var(--secondary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(42,92,61,0.1);
+        }
+
+        .place-order-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .place-order-btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .error-message {
+            background-color: #fee;
+            color: #c00;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-cart i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .checkout-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .back-button {
+                align-self: flex-start;
+            }
+            .checkout-content {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <div class="container">
+        <div class="checkout-header">
+            <a href="shop.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Shop
+            </a>
+            <h1><i class="fas fa-shopping-cart"></i> Checkout</h1>
+        </div>
 
-<h2>Checkout</h2>
+        <div class="checkout-content" id="checkoutContent">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
 
-<div class="box">
-  <input id="name" placeholder="Name">
-  <input id="phone" placeholder="Phone">
-  <textarea id="location" placeholder="Location"></textarea>
+    <script>
+        // Retrieve cart from localStorage
+        let cart = [];
+        try {
+            const storedCart = localStorage.getItem('cart');
+            if (storedCart) {
+                cart = JSON.parse(storedCart);
+            }
+        } catch(e) {
+            console.error('Error parsing cart', e);
+        }
 
-  <button onclick="send()">Place Order</button>
-</div>
+        // Function to display order summary
+        function displayOrderSummary() {
+            const container = document.getElementById('checkoutContent');
+            if (!cart.length) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some items to your cart before checking out.</p>
+                        <a href="shop.html" class="back-button" style="background: var(--primary-color); color: white; display: inline-block; margin-top: 20px;">
+                            <i class="fas fa-arrow-left"></i> Continue Shopping
+                        </a>
+                    </div>
+                `;
+                return;
+            }
 
-<script>
-function send() {
+            let itemsHtml = '';
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                itemsHtml += `
+                    <div class="order-item">
+                        <span><strong>${item.name}</strong> x ${item.quantity}</span>
+                        <span>KSh ${itemTotal.toLocaleString()}</span>
+                    </div>
+                `;
+            });
 
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-  let location = document.getElementById("location").value;
+            const html = `
+                <div class="order-summary">
+                    <h3><i class="fas fa-receipt"></i> Order Summary</h3>
+                    ${itemsHtml}
+                    <div class="order-total">
+                        <span>Total Amount:</span>
+                        <span>KSh ${total.toLocaleString()}</span>
+                    </div>
+                </div>
 
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                <form id="checkoutForm">
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for order confirmation) *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="e.g., 0712345678">
+                        <small style="color: var(--light-text);">We'll contact you via WhatsApp/SMS</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Delivery Location *</label>
+                        <textarea id="location" name="location" rows="3" required placeholder="Enter your full address, e.g., Nairobi, Westlands, Kimathi Street 123"></textarea>
+                    </div>
+                    <div class="error-message" id="errorMsg"></div>
+                    <button type="submit" class="place-order-btn">
+                        <i class="fab fa-whatsapp"></i> Place Order via WhatsApp
+                    </button>
+                </form>
+            `;
+            container.innerHTML = html;
 
-  let msg = "🛒 *NEW ORDER - Bram Interiors*%0A%0A";
+            // Attach form submit handler
+            const form = document.getElementById('checkoutForm');
+            form.addEventListener('submit', handleOrderSubmit);
+        }
 
-  let total = 0;
+        // Handle order submission: open WhatsApp with order details
+        function handleOrderSubmit(e) {
+            e.preventDefault();
 
-  if(cart.length === 0){
-    msg += "⚠️ No items in cart%0A";
-  } else {
-    cart.forEach(item => {
-      let subtotal = item.price * item.qty;
-      total += subtotal;
+            const phoneInput = document.getElementById('phone');
+            const locationInput = document.getElementById('location');
+            const errorDiv = document.getElementById('errorMsg');
 
-      msg += `• ${item.name} x${item.qty} = Ksh ${subtotal}%0A`;
-    });
+            // Clear previous error
+            errorDiv.style.display = 'none';
+            errorDiv.textContent = '';
 
-    msg += `%0A💰 Total: Ksh ${total}%0A%0A`;
-  }
+            // Validate phone (simple)
+            let phone = phoneInput.value.trim();
+            if (!phone) {
+                showError('Please enter your phone number');
+                return;
+            }
+            // Remove any non-digit characters (except leading + maybe)
+            phone = phone.replace(/\D/g, '');
+            if (phone.length < 9 || phone.length > 13) {
+                showError('Please enter a valid phone number (e.g., 0712345678)');
+                return;
+            }
+            // Prepend Kenya country code if not present
+            if (phone.startsWith('0')) {
+                phone = '254' + phone.substring(1);
+            } else if (!phone.startsWith('254') && phone.length === 9) {
+                // assume it's 9-digit number starting with 7
+                phone = '254' + phone;
+            }
 
-  msg += `👤 Name: ${name}%0A`;
-  msg += `📞 Phone: ${phone}%0A`;
-  msg += `📍 Location: ${location}`;
+            const location = locationInput.value.trim();
+            if (!location) {
+                showError('Please enter your delivery location');
+                return;
+            }
 
-  window.location.href =
-    "https://wa.me/+254 752 902370?text=" + msg;
-}
-</script>
+            // Prepare order message
+            let total = 0;
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+            });
 
+            // Build item list
+            let itemsText = '';
+            cart.forEach(item => {
+                itemsText += `• ${item.name} x ${item.quantity} = KSh ${(item.price * item.quantity).toLocaleString()}\n`;
+            });
+
+            const message = `*NEW ORDER FROM BRAM INTERIORS*\n\n` +
+                `*Items:*\n${itemsText}\n` +
+                `*Total:* KSh ${total.toLocaleString()}\n\n` +
+                `*Customer Phone:* +${phone}\n` +
+                `*Delivery Location:* ${location}\n\n` +
+                `Thank you!`;
+
+            // Encode for WhatsApp URL
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/+254752902370?text=${encodedMessage}`;
+
+            // Open WhatsApp in new tab
+            window.open(whatsappUrl, '_blank');
+
+            // Show confirmation message
+            alert('Order details have been sent via WhatsApp. We will confirm shortly.');
+
+            // Optionally clear cart from localStorage after order placed
+            localStorage.removeItem('cart');
+            // Redirect to shop after a short delay
+            setTimeout(() => {
+                window.location.href = 'shop.html';
+            }, 2000);
+        }
+
+        function showError(msg) {
+            const errorDiv = document.getElementById('errorMsg');
+            errorDiv.textContent = msg;
+            errorDiv.style.display = 'block';
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 4000);
+        }
+
+        // Run on page load
+        displayOrderSummary();
+    </script>
 </body>
 </html>

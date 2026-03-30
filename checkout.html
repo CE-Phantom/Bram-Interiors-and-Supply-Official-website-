@@ -36,27 +36,37 @@
 </div>
 
 <script>
-function send(){
+function send() {
 
-  let name=document.getElementById("name").value;
-  let phone=document.getElementById("phone").value;
-  let location=document.getElementById("location").value;
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  let location = document.getElementById("location").value;
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  let msg="NEW ORDER%0A%0A";
-  let total=0;
+  let msg = "🛒 *NEW ORDER - Bram Interiors*%0A%0A";
 
-  cart.forEach(item=>{
-    let sum=item.price*item.qty;
-    total+=sum;
-    msg+=`${item.name} x${item.qty} = Ksh ${sum}%0A`;
-  });
+  let total = 0;
 
-  msg+=`%0ATOTAL: Ksh ${total}%0A%0A`;
-  msg+=`Name: ${name}%0APhone: ${phone}%0ALocation: ${location}`;
+  if(cart.length === 0){
+    msg += "⚠️ No items in cart%0A";
+  } else {
+    cart.forEach(item => {
+      let subtotal = item.price * item.qty;
+      total += subtotal;
 
-  window.location.href="https://wa.me/254XXXXXXXXX?text="+msg;
+      msg += `• ${item.name} x${item.qty} = Ksh ${subtotal}%0A`;
+    });
+
+    msg += `%0A💰 Total: Ksh ${total}%0A%0A`;
+  }
+
+  msg += `👤 Name: ${name}%0A`;
+  msg += `📞 Phone: ${phone}%0A`;
+  msg += `📍 Location: ${location}`;
+
+  window.location.href =
+    "https://wa.me/+254 752 902370?text=" + msg;
 }
 </script>
 

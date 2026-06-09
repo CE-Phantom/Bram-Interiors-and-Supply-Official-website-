@@ -385,20 +385,20 @@
 
 <script>
     // Product data
-    const products = [
-        { id: 1, name: '18mm MDF Board (4x8 ft)', price: 4500, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
-        { id: 2, name: '12mm Plywood (4x8 ft)', price: 3800, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true },
-        { id: 3, name: 'Wood Screws (50mm) - 100pcs', price: 850, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
-        { id: 4, name: 'Drywall Screws (25mm) - 200pcs', price: 650, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
-        { id: 5, name: 'Cabinet Hinges (Soft-close) - 10pcs', price: 2200, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
-        { id: 6, name: 'Drawer Slides (45cm) - Pair', price: 1800, image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
-        { id: 7, name: 'Wood Glue (1L)', price: 950, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Adhesives', needsColor: true },
-        { id: 8, name: 'Sandpaper Assorted (10 sheets)', price: 350, image: 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Tools', needsColor: false },
-        { id: 9, name: 'Edge Banding Tape (22mm) - 50m', price: 1200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim', needsColor: true },
-        { id: 10, name: 'PVC Skirting Board (2.4m)', price: 850, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Trim', needsColor: true },
-        { id: 11, name: 'Nails (50mm) - 1kg', price: 450, image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Hardware', needsColor: false },
-        { id: 12, name: 'Laminate Sheet (4x8 ft)', price: 3200, image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', category: 'Boards', needsColor: true }
-    ];
+const products = [
+    { id: 1, name: '18mm MDF Board (4x8 ft)', price: 4500, image: 'images/mdf-18mm.jpg', category: 'Boards', needsColor: true },
+    { id: 2, name: '12mm Plywood (4x8 ft)', price: 3800, image: 'images/plywood-12mm.jpg', category: 'Boards', needsColor: true },
+    { id: 3, name: 'Wood Screws (50mm) - 100pcs', price: 850, image: 'images/screws-50mm.jpg', category: 'Hardware', needsColor: false },
+    { id: 4, name: 'Drywall Screws (25mm) - 200pcs', price: 650, image: 'images/drywall-screws.jpg', category: 'Hardware', needsColor: false },
+    { id: 5, name: 'Cabinet Hinges (Soft-close) - 10pcs', price: 2200, image: 'images/cabinet-hinges.jpg', category: 'Hardware', needsColor: false },
+    { id: 6, name: 'Drawer Slides (45cm) - Pair', price: 1800, image: 'images/drawer-slides.jpg', category: 'Hardware', needsColor: false },
+    { id: 7, name: 'Wood Glue (1L)', price: 950, image: 'images/wood-glue.jpg', category: 'Adhesives', needsColor: true },
+    { id: 8, name: 'Sandpaper Assorted (10 sheets)', price: 350, image: 'images/sandpaper.jpg', category: 'Tools', needsColor: false },
+    { id: 9, name: 'Edge Banding Tape (22mm) - 50m', price: 1200, image: 'images/edge-banding.jpg', category: 'Trim', needsColor: true },
+    { id: 10, name: 'PVC Skirting Board (2.4m)', price: 850, image: 'images/pvc-skirting.jpg', category: 'Trim', needsColor: true },
+    { id: 11, name: 'Nails (50mm) - 1kg', price: 450, image: 'images/nails-1kg.jpg', category: 'Hardware', needsColor: false },
+    { id: 12, name: 'Laminate Sheet (4x8 ft)', price: 3200, image: 'images/laminate-sheet.jpg', category: 'Boards', needsColor: true }
+];
 
     // Color options for dropdown
     const colorOptions = [
